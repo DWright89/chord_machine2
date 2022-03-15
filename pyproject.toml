@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "chordmachine2"
+version = "0.1.0"
+description = ""
+authors = ["Denny Wright <dennison.wright89@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.75.0"
+uvicorn = "^0.17.6"
+tortoise-orm = "^0.18.1"
+asyncpg = "^0.25.0"
+aerich = "^0.6.2"
+loguru = "^0.6.0"
+python-dotenv = "^0.19.2"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+
+
+[tool.aerich]
+tortoise_orm = "server.utils.db_manager.MIGRATION_CONFIG"
+location = "./migrations"
+src_folder = "./."
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

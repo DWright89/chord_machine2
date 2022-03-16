@@ -1,0 +1,26 @@
+-- upgrade --
+CREATE TABLE IF NOT EXISTS "users" (
+    "id" UUID NOT NULL  PRIMARY KEY,
+    "email" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS "chords" (
+    "id" UUID NOT NULL  PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "order" INT NOT NULL,
+    "degree" INT NOT NULL,
+    "extension" TEXT NOT NULL,
+    "inversion" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP,
+    "user_id" UUID NOT NULL REFERENCES "users" ("id") ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "aerich" (
+    "id" SERIAL NOT NULL PRIMARY KEY,
+    "version" VARCHAR(255) NOT NULL,
+    "app" VARCHAR(20) NOT NULL,
+    "content" JSONB NOT NULL
+);
